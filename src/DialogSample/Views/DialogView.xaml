@@ -1,0 +1,53 @@
+﻿<UserControl
+    x:Class="DialogSample.Views.DialogView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:DialogSample.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition />
+            <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            VerticalAlignment="Center"
+            FontSize="30"
+            Text="{Binding Title}" />
+
+        <StackPanel Grid.Row="1">
+            <TextBox
+                Width="300"
+                Height="35"
+                Margin="0,20"
+                Text="{Binding Parameters1}" />
+            <TextBox
+                Width="300"
+                Height="35"
+                Text="{Binding Parameters2}" />
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="2"
+            Margin="20,0"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                Width="100"
+                Height="35"
+                Margin="10,5"
+                Command="{Binding CancelCmd}"
+                Content="取消" />
+            <Button
+                Width="100"
+                Height="35"
+                Command="{Binding SaveCmd}"
+                Content="确定" />
+        </StackPanel>
+    </Grid>
+</UserControl>
