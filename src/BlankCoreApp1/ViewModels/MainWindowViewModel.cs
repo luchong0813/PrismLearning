@@ -1,5 +1,7 @@
-﻿using DryIoc;
+﻿using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Regions;
+using System;
 
 namespace BlankCoreApp1.ViewModels
 {
@@ -11,18 +13,22 @@ namespace BlankCoreApp1.ViewModels
             get { return _title; }
             set { SetProperty(ref _title, value); }
         }
+        private readonly IRegionManager _regionManage;
+        public DelegateCommand<string> OpenCommand { get; private set; }
 
-        private string _content="Hello Prism!";
-
-        public string Content
+        public MainWindowViewModel(IRegionManager regionManager)
         {
-            get { return _content="Hello Prism!"; }
-            set { _content = value; }
+            _regionManage = regionManager;
+            OpenCommand = new DelegateCommand<string>(OpenMethod);
         }
 
-
-        public MainWindowViewModel()
+        private void OpenMethod(string obj)
         {
+            //Tips:只能具有Window或Frame父级才可以请求导航
+
+            //通过IRegionManager获取全局定义可用的区域
+            //通过注册的区域名称找到区域动态的去设置内容
+            _regionManage.Regions["ModuleContent"].RequestNavigate(obj);
         }
     }
 }

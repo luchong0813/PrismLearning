@@ -1,5 +1,5 @@
 ﻿<Window
-    x:Class="BlankCoreApp1.Views.MainWindow"
+    x:Class="MainModule.Views.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:prism="http://prismlibrary.com/"
@@ -25,9 +25,14 @@
                 Content="模块B" />
             <Button
                 Margin="5"
-                Command="{Binding OpenCommand}"
-                CommandParameter="ViewC"
-                Content="模块C" />
+                Command="{Binding BackCommand}"
+                CommandParameter="ViewB"
+                Content="👈上一步" />
+            <Button
+                Margin="5"
+                Command="{Binding NextCommand}"
+                CommandParameter="ViewB"
+                Content="👉下一步" />
         </StackPanel>
 
         <ContentControl Grid.Column="1" prism:RegionManager.RegionName="ModuleContent" />
