@@ -38,6 +38,11 @@
                 Command="{Binding OpenDialogCommand}"
                 CommandParameter="DialogView"
                 Content="打开对话框" />
+            <Button
+                Margin="5"
+                Command="{Binding PubSubEventCommand}"
+                CommandParameter="DialogView"
+                Content="事件聚合器Event" />
         </StackPanel>
 
         <ContentControl Grid.Column="1" prism:RegionManager.RegionName="ModuleContent" />

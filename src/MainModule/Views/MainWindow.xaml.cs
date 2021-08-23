@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using MainModule.Event;
+using Prism.Events;
+using System;
+using System.Windows;
 
 namespace MainModule.Views
 {
@@ -7,9 +10,20 @@ namespace MainModule.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly IEventAggregator _aggregator;
+
+        public MainWindow(IEventAggregator aggregator)
         {
             InitializeComponent();
+            _aggregator = aggregator;
+
+            _aggregator.GetEvent<MessageEvent>().Subscribe(ShowMethod, arg => arg.Code == 500); 
+        }
+
+        private void ShowMethod(MessageModel obj)
+        {
+            MessageBox.Show($"Code:{obj.Code}\r\nMessage:{obj.Message}\r\nData:{obj.Data}", "系统提示");
+            //_aggregator.GetEvent<MessageEvent>().Unsubscribe(ShowMethod);
         }
     }
 }
